@@ -41,6 +41,7 @@ def database_setup(systems):
 
 		print("(Database Setup): Looking good.")
 
+
 def iceberg_systems_from_db():
 	all_iceberg_systems = []
 	with sqlite3.connect(database_location) as connection:
@@ -50,10 +51,18 @@ def iceberg_systems_from_db():
 			all_iceberg_systems.append(row[0])
 	return all_iceberg_systems
 
+
 def iceberg_queue_smasher(queue):
-	print("(Processing the queue): Smasher Iteration")
+	print("(Processing the Queue): Smasher Iteration")
 	for _ in range(len(queue)):
-		print(queue[_].name)
+		print(queue[_])
+
+
+
+		#remove iceberg objects once they are complete or failed.
+		if queue[_].phase == "Phases.failed" or queue[_].phase == "Phases.complete":
+			del queue[_]
+
 
 #CHECK PATHS AND LOCATIONS MAKE SENSE
 iceberg.Iceberg.health_check(systems_list_name, base_path, database_location)

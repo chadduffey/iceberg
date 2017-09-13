@@ -4,7 +4,6 @@ import datetime
 import os
 import sys
 
-
 class Phases(Enum):
 	init = 1
 	log_fetch = 2
