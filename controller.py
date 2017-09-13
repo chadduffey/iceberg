@@ -8,8 +8,10 @@
 
 #clean up
 
-from .iceberg import Iceberg
+import iceberg
 
-salesforce = Iceberg(name="salesforce")
+system1 = iceberg.Iceberg(name="system1")
+
+print(system1)
 
 

@@ -2,12 +2,14 @@ from enum import Enum
 
 import datetime
 
+
 class Phases(Enum):
 	init = 1
 	log_fetch = 2
 	log_parse = 3
 	complete = 4
 	failed = 5
+
 
 class Iceberg(object):
 
@@ -18,7 +20,7 @@ class Iceberg(object):
 		self.phase = Phases.init
 
 	def __str__(self):
-		return self.name + " " + self.phase
+		return self.name + " is in: " + str(self.phase)
 
 	def nextPhase(self):
 		pass
@@ -28,6 +30,7 @@ class Iceberg(object):
 
 	def finishObject(self):
 		pass
+
 
 
 
