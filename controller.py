@@ -14,12 +14,15 @@ import sqlite3
 #----------------------------------------
 # modify:
 
-database_name = "iceberg.db"
-database_location = "c:\\iceberg\\database\\"
+base_path = "c:\\iceberg"
+database_location = base_path + "\\database\\iceberg.db"
+systems_list_name = base_path + "\\service\\systems.txt"
 
 #----------------------------------------
 
-with sqlite3.connect(database_location + database_name) as connection:
+iceberg.Iceberg.health_check(systems_list_name, base_path, database_location)
+
+with sqlite3.connect(database_location) as connection:
 	c = connection.cursor()
 
 	c.execute("CREATE TABLE IF NOT EXISTS Systems(SystemName TEXT UNIQUE)")
